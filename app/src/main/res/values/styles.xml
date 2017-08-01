@@ -8,4 +8,23 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="edittext_style">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/edtittext_back</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:ems">12</item>
+    </style>
+
+    <style name="btn_style">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/btn_back</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:ems">12</item>
+    </style>
 </resources>

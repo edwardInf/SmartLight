@@ -24,4 +24,10 @@
     <string name="rxtini">Seleccione un dispositivo btSerial</string>
     <string name="txt_conecting">Conectando</string>
 
+    <string name="txt_us">Usuario</string>
+    <string name="txt_ps">Contraseña</string>
+    <string name="txt_login">INGRESAR</string>
+    <string name="txt_regis">REGISTRARSE</string>
+
+
 </resources>

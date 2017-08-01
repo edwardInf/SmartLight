@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="60dp"
+    android:background="@color/colorFondoLogin">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorIcons"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="45dp"
+        android:text="@string/txt_regis"/>
+    <EditText
+        style="@style/edittext_style"
+        android:inputType="textEmailAddress"
+        android:id="@+id/edt_Reguser"
+        android:hint="@string/txt_us"/>
+    <EditText
+        style="@style/edittext_style"
+        android:inputType="textPassword"
+        android:id="@+id/edt_Regpassword"
+        android:hint="@string/txt_ps"/>
+    <Button
+        android:id="@+id/btn_login"
+        style="@style/btn_style"
+        android:textColor="@color/colorIcons"
+        android:textSize="18sp"
+        android:text="@string/txt_regis"
+        android:onClick="btnRegistroFire"/>
+
+</LinearLayout>

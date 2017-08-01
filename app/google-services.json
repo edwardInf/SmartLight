@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "12639159877",
+    "firebase_url": "https://smartlight-1ba98.firebaseio.com",
+    "project_id": "smartlight-1ba98",
+    "storage_bucket": "smartlight-1ba98.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12639159877:android:5a73504858b389dc",
+        "android_client_info": {
+          "package_name": "com.example.edwardmpro.smartlight"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "12639159877-dr4574pltttshn6mr1earug7epd59ng0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC61tat-0-4Ro1Rn0V_93PwMzbTM_bFz3s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
