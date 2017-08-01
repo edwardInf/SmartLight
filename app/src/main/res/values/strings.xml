@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">SmartLight</string>
+    <string name="none_paired">Ningun dispositivo pudo ser emparejado</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="text_Dispo">Dispositivo</string>
+    <string name="text_Estado">Estado</string>
+    <string name="text_Con">Conexión</string>
+    <string name="text_Enc">Encender</string>
+    <string name="text_Int">Intensidad</string>
+    <string name="text_tipo">Tipo de Conexion</string>
+    <string name="text_id">Ingresar ID</string>
+    <string name="text_listdisp">Seleccione un dispositivo vinculado</string>
+    <string name="text_conec">Conectar</string>
+
+    <string name="txt_on">ON</string>
+    <string name="txt_off">OFF</string>
+    <string name="txt_blue">Bluetooth</string>
+    <string name="txt_estconec">Conectado</string>
+    <string name="txt_intensidad">Intensidad</string>
+    <string name="txt_info">Informacion</string>
+    <string name="rxtini">Seleccione un dispositivo btSerial</string>
+    <string name="txt_conecting">Conectando</string>
+
+</resources>
