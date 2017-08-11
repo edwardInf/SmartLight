@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,10 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.hitomi.cmlibrary.CircleMenu;
+import com.hitomi.cmlibrary.OnMenuSelectedListener;
+import com.hitomi.cmlibrary.OnMenuStatusChangeListener;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,14 +45,11 @@ public class ControlActivity extends AppCompatActivity {
 
         btnOn = (RadioButton) findViewById(R.id.buttonOn);
         btnOff = (RadioButton) findViewById(R.id.buttonOff);
-        txtString = (TextView) findViewById(R.id.txtString);
-        txtStringLength = (TextView) findViewById(R.id.testView1);
+
         sensorView0 = (TextView) findViewById(R.id.sensorView0);
         sensorView1 = (TextView) findViewById(R.id.sensorView1);
         sensorView2 = (TextView) findViewById(R.id.sensorView2);
         sensorView3 = (TextView) findViewById(R.id.sensorView3);
-
-        txtSendorLDR = (TextView) findViewById(R.id.tv_sendorldr);
 
 
         bluetoothIn = new Handler() {
@@ -76,7 +78,6 @@ public class ControlActivity extends AppCompatActivity {
                             sensorView1.setText(sensor1);
                             sensorView2.setText(sensor2);
                             sensorView3.setText(sensor3);
-                            //sensorView3.setText(" Sensor 3 Voltage = " + sensor3 + "V");
                         }
                         recDataString.delete(0, recDataString.length());
                     }
@@ -91,16 +92,99 @@ public class ControlActivity extends AppCompatActivity {
         btnOff.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 mConnectedThread.write("2");
-                Toast.makeText(getBaseContext(), "Apagar el LED", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "LED Apagado", Toast.LENGTH_SHORT).show();
             }
         });
 
         btnOn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 mConnectedThread.write("1");
-                Toast.makeText(getBaseContext(), "Encender el LED", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "LED Encendido", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+        CircleMenu circleMe = (CircleMenu) findViewById(R.id.circle_menuOnLED);
+        circleMe.setMainMenu(Color.parseColor("#CDCDCD"), R.mipmap.icon_menu, R.mipmap.icon_cancel)
+                .addSubMenu(Color.parseColor("#1565C0"), R.drawable.ic_ledon)
+                .addSubMenu(Color.parseColor("#C62828"), R.drawable.ic_ledon)
+                .addSubMenu(Color.parseColor("#558B2F"), R.drawable.ic_ledon)
+                .addSubMenu(Color.parseColor("#EF6C00"), R.drawable.ic_ledon)
+                .setOnMenuSelectedListener(new OnMenuSelectedListener() {
+
+                    @Override
+                    public void onMenuSelected(int index) {
+                        switch (index){
+                            case 0:
+                                mConnectedThread.write("6");
+                                Toast.makeText(getBaseContext(), "LED Multicolor", Toast.LENGTH_SHORT).show();
+                                break;
+                            case 1:
+                                mConnectedThread.write("3");
+                                Toast.makeText(getBaseContext(), "LED Rojo", Toast.LENGTH_SHORT).show();
+                                break;
+                            case 2:
+                                mConnectedThread.write("4");
+                                Toast.makeText(getBaseContext(), "LED Verde", Toast.LENGTH_SHORT).show();
+                                break;
+                            case 3:
+                                mConnectedThread.write("5");
+                                Toast.makeText(getBaseContext(), "LED Naranja", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                    }
+
+                }).setOnMenuStatusChangeListener(new OnMenuStatusChangeListener() {
+
+            @Override
+            public void onMenuOpened() {}
+
+            @Override
+            public void onMenuClosed() {}
+
+        });
+
+
+        CircleMenu circleMeOff = (CircleMenu) findViewById(R.id.circle_menuOffLED);
+        circleMeOff.setMainMenu(Color.parseColor("#CDCDCD"), R.mipmap.icon_menu, R.mipmap.icon_cancel)
+                .addSubMenu(Color.parseColor("#1565C0"), R.drawable.ic_leoff)
+                .addSubMenu(Color.parseColor("#C62828"), R.drawable.ic_leoff)
+                .addSubMenu(Color.parseColor("#558B2F"), R.drawable.ic_leoff)
+                .addSubMenu(Color.parseColor("#EF6C00"), R.drawable.ic_leoff)
+                .setOnMenuSelectedListener(new OnMenuSelectedListener() {
+
+                    @Override
+                    public void onMenuSelected(int index) {
+                        switch (index){
+                            case 0:
+                                mConnectedThread.write("2");
+                                Toast.makeText(getBaseContext(), "LED Off", Toast.LENGTH_SHORT).show();
+                                break;
+                            case 1:
+                                mConnectedThread.write("2");
+                                Toast.makeText(getBaseContext(), "LED Off", Toast.LENGTH_SHORT).show();
+                                break;
+                            case 2:
+                                mConnectedThread.write("2");
+                                Toast.makeText(getBaseContext(), "LED Off", Toast.LENGTH_SHORT).show();
+                                break;
+                            case 3:
+                                mConnectedThread.write("2");
+                                Toast.makeText(getBaseContext(), "LED Off", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                    }
+
+                }).setOnMenuStatusChangeListener(new OnMenuStatusChangeListener() {
+
+            @Override
+            public void onMenuOpened() {}
+
+            @Override
+            public void onMenuClosed() {}
+
+        });
+
     }
 
 
@@ -124,7 +208,6 @@ public class ControlActivity extends AppCompatActivity {
         } catch (IOException e) {
             Toast.makeText(getBaseContext(), "La creacción del Socket fallo", Toast.LENGTH_LONG).show();
         }
-        // Establish the Bluetooth socket connection.
         try
         {
             btSocket.connect();
@@ -134,14 +217,10 @@ public class ControlActivity extends AppCompatActivity {
                 btSocket.close();
             } catch (IOException e2)
             {
-                //insert code to deal with this
             }
         }
         mConnectedThread = new ConnectedThread(btSocket);
         mConnectedThread.start();
-
-        //I send a character when resuming.beginning transmission to check device is connected
-        //If it is not an exception will be thrown in the write method and finish() will be called
         mConnectedThread.write("x");
     }
 
@@ -151,14 +230,11 @@ public class ControlActivity extends AppCompatActivity {
         super.onPause();
         try
         {
-            //Don't leave Bluetooth sockets open when leaving activity
             btSocket.close();
         } catch (IOException e2) {
-            //insert code to deal with this
         }
     }
 
-    //Checks that the Android device Bluetooth is available and prompts to be turned on if off
     private void checkBTState() {
 
         if(btAdapter==null) {
@@ -172,18 +248,15 @@ public class ControlActivity extends AppCompatActivity {
         }
     }
 
-    //create new class for connect thread
     private class ConnectedThread extends Thread {
         private final InputStream mmInStream;
         private final OutputStream mmOutStream;
 
-        //creation of the connect thread
         public ConnectedThread(BluetoothSocket socket) {
             InputStream tmpIn = null;
             OutputStream tmpOut = null;
 
             try {
-                //Create I/O streams for connection
                 tmpIn = socket.getInputStream();
                 tmpOut = socket.getOutputStream();
             } catch (IOException e) { }
@@ -196,26 +269,21 @@ public class ControlActivity extends AppCompatActivity {
         public void run() {
             byte[] buffer = new byte[256];
             int bytes;
-
-            // Keep looping to listen for received messages
             while (true) {
                 try {
-                    bytes = mmInStream.read(buffer);        	//read bytes from input buffer
+                    bytes = mmInStream.read(buffer);
                     String readMessage = new String(buffer, 0, bytes);
-                    // Send the obtained bytes to the UI Activity via handler
                     bluetoothIn.obtainMessage(handlerState, bytes, -1, readMessage).sendToTarget();
                 } catch (IOException e) {
                     break;
                 }
             }
         }
-        //write method
         public void write(String input) {
-            byte[] msgBuffer = input.getBytes();           //converts entered String into bytes
+            byte[] msgBuffer = input.getBytes();
             try {
-                mmOutStream.write(msgBuffer);                //write bytes over BT connection via outstream
+                mmOutStream.write(msgBuffer);
             } catch (IOException e) {
-                //if you cannot write, close the application
                 Toast.makeText(getBaseContext(), "La Conexión fallo", Toast.LENGTH_LONG).show();
                 finish();
 

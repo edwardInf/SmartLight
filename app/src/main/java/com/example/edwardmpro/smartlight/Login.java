@@ -33,22 +33,27 @@ public class Login extends AppCompatActivity {
         startActivity(i);
     }
     public void clickIngresar(View view){
-        final ProgressDialog progg = ProgressDialog.show(Login.this,"Espere por favor.... ","Procesando",true);
-        (firebaseAuth.signInWithEmailAndPassword(usuario.getText().toString(),contrasena.getText().toString()))
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        progg.dismiss();
-                        if (task.isSuccessful()){
-                            Toast.makeText(Login.this,"Registro Completo",Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(Login.this,ListaDevices.class);
-                            startActivity(i);
+        if (usuario.getText().toString().equals("")&&contrasena.getText().toString().equals("")){
+            Toast.makeText(Login.this,"Completa Los Campos",Toast.LENGTH_SHORT).show();
+        }else {
+            final ProgressDialog progg = ProgressDialog.show(Login.this,"Espere por favor.... ","Procesando",true);
+            (firebaseAuth.signInWithEmailAndPassword(usuario.getText().toString(),contrasena.getText().toString()))
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            progg.dismiss();
+                            if (task.isSuccessful()){
+                                Toast.makeText(Login.this,"Registro Completo",Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(Login.this,ListaDevices.class);
+                                startActivity(i);
 
-                        }else {
-                            Log.e("Error",task.getException().toString());
-                            Toast.makeText(Login.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                            }else {
+                                Log.e("Error",task.getException().toString());
+                                Toast.makeText(Login.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
-    }
+                    });
+        }
+        }
+
 }

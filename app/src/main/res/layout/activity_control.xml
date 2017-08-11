@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="15dp"
     tools:context="com.example.edwardmpro.smartlight.ControlActivity">
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fillViewport="true"
-        android:id="@+id/scrollView">
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -28,7 +24,8 @@
                     android:orientation="vertical"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/Conexion">
+                    android:id="@+id/Conexion"
+                    android:weightSum="1">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -42,7 +39,6 @@
                         android:orientation="horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/linearPruebaConexion"
                         android:gravity="center"
                         android:layout_marginBottom="10dp">
 
@@ -50,17 +46,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="@string/text_Dispo"
-                            android:id="@+id/tv_sendorldr"
+                            android:text="Normal"
                             android:layout_gravity="center_vertical"
                             android:layout_marginRight="10dp" />
                         <RadioGroup
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:id="@+id/rg_TipCon"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginLeft="10dp">
+                            android:layout_marginLeft="40dp">
                             <RadioButton
                                 android:id="@+id/buttonOn"
                                 android:layout_width="50dp"
@@ -84,13 +77,49 @@
                                 android:text="@string/txt_off"
                                 android:textColor="@drawable/rb_textcolortcone" />
                         </RadioGroup>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
                         <TextView
-                            android:id="@+id/sensorView0"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Resultado 1"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                            android:layout_marginLeft="20dp"
+                            android:text="Encender LED"
+                            android:textSize="18sp"
+                            android:textColor="@color/colorPrimary_text"
+                            android:layout_marginRight="20dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="Apagar LED"
+                            android:textSize="18sp"
+                            android:textColor="@color/colorPrimary_text"
+                            android:layout_marginRight="20dp"/>
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <com.hitomi.cmlibrary.CircleMenu
+                            android:id="@+id/circle_menuOnLED"
+                            android:layout_width="120dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"/>
+                        <com.hitomi.cmlibrary.CircleMenu
+                            android:id="@+id/circle_menuOffLED"
+                            android:layout_width="120dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"/>
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -186,7 +215,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/sensorView0"
                             android:layout_centerHorizontal="true"
-                            android:text="Resultado 2: ????"
+                            android:text="Resultado 2:"
                             android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     </LinearLayout>
@@ -210,7 +239,6 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/sensorView1"
                             android:layout_centerHorizontal="true"
-                            android:text="Resultado 3: ????"
                             android:textAppearance="?android:attr/textAppearanceMedium" />
                     </LinearLayout>
 
@@ -255,7 +283,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/sensorView2"
                             android:layout_centerHorizontal="true"
-                            android:text="Resultado 4: ????"
+                            android:text="Resultado 4:"
                             android:textAppearance="?android:attr/textAppearanceMedium" />
                     </LinearLayout>
 
@@ -289,34 +317,4 @@
             </LinearLayout>
 
         </LinearLayout>
-
-
-
-
-    </ScrollView>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <TextView
-            android:id="@+id/testView1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/txtString"
-            android:text="Tamaño del String = "
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/txtString"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/testView1"
-            android:layout_alignParentBottom="true"
-            android:text="Datos recibidos ="
-            android:textSize="15sp" />
-    </LinearLayout></LinearLayout>
+</android.support.v4.widget.NestedScrollView>

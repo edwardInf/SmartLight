@@ -7,7 +7,13 @@
     android:padding="20dp"
     android:background="@color/colorFondoLogin"
     tools:context="com.example.edwardmpro.smartlight.Login">
-
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        android:src="@drawable/foco"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"/>
     <EditText
         style="@style/edittext_style"
         android:inputType="textEmailAddress"
